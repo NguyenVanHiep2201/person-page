@@ -1,8 +1,203 @@
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trang cá nhân - [Tên bạn]</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4e54c8;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: white;
+      text-align: center;
+      padding: 100px 20px 60px;
+      margin-top: 50px;
+    }
+
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 32px;
+    }
+
+    p.subtitle {
+      font-size: 18px;
+      margin: 10px 0 30px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #4e54c8;
+      border-left: 5px solid #8f94fb;
+      padding-left: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .card p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #4e54c8;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #eee;
+      margin-top: 50px;
+    }
+
+    .social a {
+      margin: 0 10px;
+      color: #4e54c8;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-<h1> xin chào mừng đến với trang web đầu tiên </h1>
-  <h2> phần giới thiệu bản thân </h2>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#about">Giới thiệu</a>
+    <a href="#blogs">Bài viết</a>
+    <a href="#projects">Dự án</a>
+    <a href="#contact">Liên hệ</a>
+  </nav>
+
+  <header>
+    <img src="https://via.placeholder.com/140" alt="Ảnh đại diện">
+    <h1>[Tên bạn]</h1>
+    <p class="subtitle">Lập trình viên | Viết blog | Yêu công nghệ</p>
+  </header>
+
+  <!-- GIỚI THIỆU -->
+  <section id="about">
+    <h2>Giới thiệu</h2>
+    <p>Xin chào! Mình là một lập trình viên đam mê phát triển web và chia sẻ kiến thức thông qua viết blog. Mình yêu thích xây dựng các ứng dụng hữu ích, gọn nhẹ và dễ sử dụng.</p>
+  </section>
+
+  <!-- BÀI VIẾT -->
+  <section id="blogs">
+    <h2>Bài viết</h2>
+
+    <div class="card">
+      <h3>🔥 Tối ưu hiệu suất website với lazy loading</h3>
+      <p>Giới thiệu về kỹ thuật lazy loading và cách áp dụng để cải thiện trải nghiệm người dùng.</p>
+      <a href="#">Xem bài viết →</a>
+    </div>
+
+    <div class="card">
+      <h3>📦 Git cơ bản cho người mới bắt đầu</h3>
+      <p>Hướng dẫn sử dụng Git để quản lý mã nguồn cho người mới.</p>
+      <a href="#">Xem bài viết →</a>
+    </div>
+
+  </section>
+
+  <!-- DỰ ÁN -->
+  <section id="projects">
+    <h2>Dự án</h2>
+
+    <div class="card">
+      <h3>🛒 Website bán hàng mini</h3>
+      <p>Trang web thương mại điện tử đơn giản với giỏ hàng, thanh toán và quản lý sản phẩm.</p>
+      <a href="#">Xem dự án →</a>
+    </div>
+
+    <div class="card">
+      <h3>📋 Ứng dụng quản lý công việc (To-do App)</h3>
+      <p>Ứng dụng đơn giản giúp bạn tạo và theo dõi công việc hàng ngày.</p>
+      <a href="#">Xem dự án →</a>
+    </div>
+
+  </section>
+
+  <!-- LIÊN HỆ -->
+  <section id="contact">
+    <h2>Liên hệ</h2>
+    <p>Nếu bạn muốn hợp tác hoặc kết nối, hãy liên hệ với mình qua các nền tảng bên dưới:</p>
+    <div class="social">
+      <a href="#">GitHub</a> |
+      <a href="#">LinkedIn</a> |
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 [Tên bạn] - All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
