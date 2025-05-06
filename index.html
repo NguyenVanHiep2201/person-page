@@ -46,15 +46,14 @@
     }
 
     .gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
+      margin-top: 50px;
     }
 
     .gallery img {
-      width: 220px;
+      width: 100%;
       height: 150px;
       object-fit: cover;
       border-radius: 12px;
@@ -71,7 +70,7 @@
 
   <img src="https://via.placeholder.com/140" alt="Ảnh đại diện" class="avatar">
   <h1>[Tên bạn]</h1>
-  <p>A journey of a thousand miles begins with a single step</p>
+  <p>Lập trình viên | Chia sẻ kiến thức | Làm việc sáng tạo</p>
 
   <div class="menu">
     <a href="about.html">Giới thiệu</a>
@@ -85,6 +84,10 @@
     <img src="https://source.unsplash.com/301x200/?coding" alt="Hình 2">
     <img src="https://source.unsplash.com/302x200/?web" alt="Hình 3">
     <img src="https://source.unsplash.com/303x200/?developer" alt="Hình 4">
+    <img src="https://source.unsplash.com/304x200/?laptop" alt="Hình 5">
+    <img src="https://source.unsplash.com/305x200/?software" alt="Hình 6">
+    <img src="https://source.unsplash.com/306x200/?creative" alt="Hình 7">
+    <img src="https://source.unsplash.com/307x200/?innovation" alt="Hình 8">
   </div>
 
 </body>
