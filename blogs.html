@@ -10,34 +10,44 @@
       margin: 40px auto;
       padding: 0 20px;
     }
-    .post {
+
+    h1 {
+      color: #4e54c8;
       margin-bottom: 30px;
     }
-    h2 {
-      color: #4e54c8;
-    }
-    a {
+
+    .post-list a {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 20px;
       color: #4e54c8;
       text-decoration: none;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      transition: 0.2s;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .post-list a:hover {
+      color: #3a3fc4;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #888;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
-  <a href="index.html">← Quay về trang chính</a>
+  <a href="index.html" class="back">← Quay về trang chính</a>
   <h1>Bài viết</h1>
 
-  <div class="post">
-    <h2><a href="#">Hiểu rõ về Git cơ bản</a></h2>
-    <p>Cách sử dụng Git để quản lý mã nguồn hiệu quả cho người mới bắt đầu.</p>
-  </div>
-
-  <div class="post">
-    <h2><a href="#">Tối ưu hiệu suất website</a></h2>
-    <p>Một số thủ thuật cải thiện tốc độ tải trang và trải nghiệm người dùng.</p>
+  <div class="post-list">
+    <a href="post1.html">1. Hướng dẫn sử dụng Git cơ bản cho người mới</a>
+    <a href="post2.html">2. Làm thế nào để tối ưu tốc độ website</a>
+    <a href="post3.html">3. Tạo portfolio cá nhân bằng HTML/CSS</a>
   </div>
 
 </body>
