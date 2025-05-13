@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bài viết</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
       padding: 40px;
-    }
-
-    h1 {
       text-align: center;
+    }
+    h1 {
       color: #4e54c8;
     }
-
-    #searchInput {
-      display: block;
-      margin: 20px auto;
-      width: 100%;
-      max-width: 400px;
+    input[type="text"] {
       padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      width: 60%;
+      max-width: 400px;
+      margin-bottom: 30px;
+      font-size: 16px;
+      border: 2px solid #4e54c8;
+      border-radius: 6px;
     }
-
     .post {
-      background: white;
-      padding: 16px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin: 20px 0;
     }
-
     .post a {
       text-decoration: none;
       color: #333;
+      font-size: 20px;
       font-weight: bold;
-      font-size: 18px;
     }
-
     .post a:hover {
       color: #4e54c8;
     }
@@ -48,27 +39,28 @@
 </head>
 <body>
 
-  <h1>Bài viết của tôi</h1>
+  <h1>Danh sách bài viết</h1>
   <input type="text" id="searchInput" placeholder="Tìm kiếm bài viết...">
 
-  <div id="postsContainer">
-    <div class="post"><a href="post1.html">Làm quen với HTML cơ bản</a></div>
-    <div class="post"><a href="post2.html">Giới thiệu về CSS và cách sử dụng</a></div>
-    <div class="post"><a href="post3.html">Xây dựng trang web cá nhân</a></div>
-    <div class="post"><a href="post4.html">Hướng dẫn sử dụng GitHub</a></div>
+  <div id="blogList">
+    <div class="post"><a href="post1.html">Giới thiệu về HTML và CSS</a></div>
+    <div class="post"><a href="post2.html">Xây dựng trang web cá nhân</a></div>
+    <div class="post"><a href="post3.html">JavaScript cơ bản</a></div>
+    <div class="post"><a href="post4.html">Lập trình với Python</a></div>
   </div>
 
   <script>
-    const searchInput = document.getElementById("searchInput");
-    const posts = document.querySelectorAll(".post");
+    const searchInput = document.getElementById('searchInput');
+    const posts = document.querySelectorAll('.post');
 
-    searchInput.addEventListener("input", () => {
-      const keyword = searchInput.value.toLowerCase();
+    searchInput.addEventListener('input', function () {
+      const keyword = this.value.toLowerCase();
       posts.forEach(post => {
         const title = post.textContent.toLowerCase();
-        post.style.display = title.includes(keyword) ? "block" : "none";
+        post.style.display = title.includes(keyword) ? 'block' : 'none';
       });
     });
   </script>
+
 </body>
 </html>
