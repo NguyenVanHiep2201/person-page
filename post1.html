@@ -3,35 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bài viết 1 - [Tên bạn]</title>
-
+  <title>Bài viết 1 - Hướng dẫn lập trình</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f9f9f9;
       color: #333;
-      text-align: center;
       padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
     }
 
     h1 {
       color: #4e54c8;
+      text-align: center;
     }
 
     .content {
-      margin-top: 20px;
+      margin-top: 30px;
+      font-size: 18px;
+      line-height: 1.6;
     }
 
     .interactions {
       margin-top: 40px;
+      text-align: center;
     }
 
     .reaction-btn {
       font-size: 20px;
-      margin: 10px;
+      margin: 8px;
       cursor: pointer;
-      padding: 10px 16px;
-      border-radius: 10px;
+      padding: 10px 20px;
+      border-radius: 30px;
       background: #eee;
       display: inline-block;
       transition: background 0.3s;
@@ -42,30 +46,31 @@
     }
 
     .reaction-count {
-      display: block;
-      margin-top: 4px;
+      display: inline-block;
+      margin-left: 6px;
       font-size: 14px;
       color: #666;
     }
 
     .comment-section {
-      margin-top: 30px;
-      text-align: left;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 40px;
+    }
+
+    .comment-section h3 {
+      color: #4e54c8;
     }
 
     .comment-section textarea {
       width: 100%;
       padding: 10px;
       font-size: 16px;
-      margin-bottom: 10px;
+      margin-top: 10px;
       border-radius: 6px;
       border: 1px solid #ccc;
     }
 
     .comment-section button {
+      margin-top: 10px;
       background: #4e54c8;
       color: white;
       padding: 10px 20px;
@@ -85,37 +90,36 @@
 
     .comment {
       background: #fff;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 10px;
       border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
-    /* Biểu tượng ngôi nhà */
+    /* Nút quay về trang chủ */
     .home-icon {
       position: fixed;
       top: 20px;
       left: 20px;
-      font-size: 28px;
+      font-size: 26px;
       background: #4e54c8;
       color: white;
       padding: 8px 12px;
       border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       text-decoration: none;
-      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- Biểu tượng ngôi nhà quay về trang chủ -->
+  <!-- Quay về trang chủ -->
   <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
 
   <h1>Bài viết 1: Hướng dẫn lập trình</h1>
 
   <div class="content">
-    <p>Đây là nội dung bài viết của tôi...</p>
+    <p>Chào mừng bạn đến với bài viết đầu tiên! Trong bài viết này, mình sẽ hướng dẫn bạn các bước cơ bản để bắt đầu lập trình từ con số 0. Bắt đầu với HTML, CSS và JavaScript, bạn sẽ nắm được nền tảng vững chắc để xây dựng trang web cá nhân.</p>
   </div>
 
   <div class="interactions">
@@ -126,13 +130,14 @@
 
   <div class="comment-section">
     <h3>Bình luận</h3>
-    <textarea id="commentInput" rows="3" placeholder="Viết bình luận..."></textarea>
-    <button onclick="addComment()">Gửi</button>
+    <textarea id="commentInput" rows="3" placeholder="Nhập bình luận của bạn..."></textarea>
+    <button onclick="addComment()">Gửi bình luận</button>
+
     <div class="comments-list" id="commentsList"></div>
   </div>
 
   <script>
-    let counts = {
+    const counts = {
       heart: 0,
       like: 0,
       dislike: 0
@@ -144,14 +149,14 @@
     }
 
     function addComment() {
-      const commentInput = document.getElementById('commentInput');
-      const comment = commentInput.value.trim();
-      if (comment) {
-        const commentBox = document.createElement('div');
-        commentBox.className = 'comment';
-        commentBox.textContent = comment;
-        document.getElementById('commentsList').prepend(commentBox);
-        commentInput.value = '';
+      const input = document.getElementById('commentInput');
+      const text = input.value.trim();
+      if (text) {
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerText = text;
+        document.getElementById('commentsList').prepend(commentDiv);
+        input.value = '';
       }
     }
   </script>
