@@ -15,7 +15,6 @@
       color: #333;
       text-align: center;
       padding: 60px 20px;
-      position: relative;
     }
 
     .avatar {
@@ -89,16 +88,14 @@
 
     /* Tìm kiếm */
     #searchInput {
-      padding: 8px 12px;
-      width: 250px;
-      font-size: 14px;
+      padding: 10px;
+      width: 60%;
+      max-width: 400px;
+      font-size: 16px;
       border: 2px solid #4e54c8;
       border-radius: 6px;
-      position: absolute;
-      bottom: 30px; /* Đặt ô tìm kiếm ở cuối trang */
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 999;
+      margin: 40px auto 20px;
+      display: block;
     }
 
     .section-title {
@@ -162,15 +159,18 @@
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=2" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=2" alt="Ảnh 2"></a>
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=3" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=3" alt="Ảnh 3"></a>
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4"></a>
+    <a class="image-link" href="08.2019.jpg" data-lightbox="gallery"><img src="08.2019.jpg" alt="Ảnh 1"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=2" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=2" alt="Ảnh 2"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=3" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=3" alt="Ảnh 3"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4"></a>
   </div>
+
+  <!-- Tìm kiếm -->
+  <input type="text" id="searchInput" placeholder="Tìm kiếm bài viết hoặc dự án...">
 
   <!-- Bài viết -->
   <div class="section-title hidden" id="postTitle">Bài viết</div>
   <div class="post-list hidden" id="postList">
-    <div class="search-item"><a href="post1.html">Bài viết 1: Trang web bán hàng</a></div>
-    <div class="search-item"><a href="post2.html">Bài viết 2: Ứng dụng ghi chú bằng React</a></div>
-    <div class="search-item"><a href="post3.html">Bài viết 3: Hệ thống quản lý học sinh</a></div>
-    <div class="search-item"><a href="post4.html">Bài viết 4: Blog cá nhân bằng Jekyll</a></div>
     <div class="search-item"><a href="post1.html">Bài viết 1: Trang web bán hàng</a></div>
     <div class="search-item"><a href="post2.html">Bài viết 2: Ứng dụng ghi chú bằng React</a></div>
     <div class="search-item"><a href="post3.html">Bài viết 3: Hệ thống quản lý học sinh</a></div>
