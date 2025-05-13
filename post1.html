@@ -22,7 +22,76 @@
       margin-top: 20px;
     }
 
-    /* Thêm biểu tượng ngôi nhà */
+    .interactions {
+      margin-top: 40px;
+    }
+
+    .reaction-btn {
+      font-size: 20px;
+      margin: 10px;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #eee;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .reaction-btn:hover {
+      background: #d0d0ff;
+    }
+
+    .reaction-count {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .comment-section {
+      margin-top: 30px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .comment-section textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .comment-section button {
+      background: #4e54c8;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .comment-section button:hover {
+      background: #3a3fc4;
+    }
+
+    .comments-list {
+      margin-top: 20px;
+    }
+
+    .comment {
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Biểu tượng ngôi nhà */
     .home-icon {
       position: fixed;
       top: 20px;
@@ -44,9 +113,48 @@
   <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
 
   <h1>Bài viết 1: Hướng dẫn lập trình</h1>
+
   <div class="content">
     <p>Đây là nội dung bài viết của tôi...</p>
   </div>
+
+  <div class="interactions">
+    <div class="reaction-btn" onclick="react('heart')">❤️ <span class="reaction-count" id="heartCount">0</span></div>
+    <div class="reaction-btn" onclick="react('like')">👍 <span class="reaction-count" id="likeCount">0</span></div>
+    <div class="reaction-btn" onclick="react('dislike')">👎 <span class="reaction-count" id="dislikeCount">0</span></div>
+  </div>
+
+  <div class="comment-section">
+    <h3>Bình luận</h3>
+    <textarea id="commentInput" rows="3" placeholder="Viết bình luận..."></textarea>
+    <button onclick="addComment()">Gửi</button>
+    <div class="comments-list" id="commentsList"></div>
+  </div>
+
+  <script>
+    let counts = {
+      heart: 0,
+      like: 0,
+      dislike: 0
+    };
+
+    function react(type) {
+      counts[type]++;
+      document.getElementById(type + 'Count').innerText = counts[type];
+    }
+
+    function addComment() {
+      const commentInput = document.getElementById('commentInput');
+      const comment = commentInput.value.trim();
+      if (comment) {
+        const commentBox = document.createElement('div');
+        commentBox.className = 'comment';
+        commentBox.textContent = comment;
+        document.getElementById('commentsList').prepend(commentBox);
+        commentInput.value = '';
+      }
+    }
+  </script>
 
 </body>
 </html>
