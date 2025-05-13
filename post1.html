@@ -3,158 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bài viết 1 - Kinh nghiệm học lập trình</title>
+  <title>Bài viết 1 - [Tên bạn]</title>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      background: #f4f4f4;
+      background: #f9f9f9;
       color: #333;
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      text-align: center;
+      padding: 60px 20px;
     }
 
     h1 {
       color: #4e54c8;
-      text-align: center;
     }
 
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-
-    .interactions {
-      margin-top: 40px;
-      border-top: 1px solid #ddd;
-      padding-top: 20px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
-    }
-
-    .buttons button {
-      font-size: 18px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .buttons button:hover {
-      transform: scale(1.2);
-    }
-
-    .comment-box {
-      text-align: left;
-    }
-
-    .comment-box textarea {
-      width: 100%;
-      height: 80px;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      resize: none;
-    }
-
-    .comment-box button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #4e54c8;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .comment-list {
+    .content {
       margin-top: 20px;
     }
 
-    .comment-list p {
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 10px;
+    /* Thêm biểu tượng ngôi nhà */
+    .home-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      background: #4e54c8;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Kinh nghiệm học lập trình</h1>
+  <!-- Biểu tượng ngôi nhà quay về trang chủ -->
+  <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
 
-    <p>Lập trình không chỉ là việc viết code, mà còn là quá trình tư duy và giải quyết vấn đề. Dưới đây là một số kinh nghiệm cá nhân:</p>
-    
-    <ul>
-      <li>Học các khái niệm cơ bản thật chắc: biến, vòng lặp, hàm, mảng, v.v.</li>
-      <li>Luyện tập thường xuyên bằng cách làm bài tập hoặc dự án nhỏ.</li>
-      <li>Đọc code của người khác để học cách tổ chức và tối ưu chương trình.</li>
-    </ul>
-
-    <img src="https://source.unsplash.com/800x400/?coding" alt="Lập trình">
-
-    <p>Bạn có thể xem thêm tài liệu tại <a href="https://www.w3schools.com" target="_blank">W3Schools</a> hoặc <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>.</p>
-
-    <!-- Phần tương tác -->
-    <div class="interactions">
-      <div class="buttons">
-        <button onclick="handleClick('heart')">❤️ <span id="heart-count">0</span></button>
-        <button onclick="handleClick('like')">👍 <span id="like-count">0</span></button>
-        <button onclick="handleClick('dislike')">👎 <span id="dislike-count">0</span></button>
-      </div>
-
-      <div class="comment-box">
-        <textarea id="comment-input" placeholder="Viết bình luận..."></textarea>
-        <button onclick="addComment()">Gửi</button>
-
-        <div class="comment-list" id="comment-list"></div>
-      </div>
-    </div>
+  <h1>Bài viết 1: Hướng dẫn lập trình</h1>
+  <div class="content">
+    <p>Đây là nội dung bài viết của tôi...</p>
   </div>
-
-  <script>
-    let heart = 0, like = 0, dislike = 0;
-
-    function handleClick(type) {
-      if (type === 'heart') {
-        heart++;
-        document.getElementById('heart-count').innerText = heart;
-      } else if (type === 'like') {
-        like++;
-        document.getElementById('like-count').innerText = like;
-      } else if (type === 'dislike') {
-        dislike++;
-        document.getElementById('dislike-count').innerText = dislike;
-      }
-    }
-
-    function addComment() {
-      const input = document.getElementById('comment-input');
-      const comment = input.value.trim();
-      if (comment) {
-        const commentList = document.getElementById('comment-list');
-        const p = document.createElement('p');
-        p.innerText = comment;
-        commentList.appendChild(p);
-        input.value = '';
-      }
-    }
-  </script>
 
 </body>
 </html>
