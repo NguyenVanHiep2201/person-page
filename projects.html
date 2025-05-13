@@ -35,10 +35,25 @@
     .project a:hover {
       color: #4e54c8;
     }
+     /* Thêm biểu tượng ngôi nhà */
+    .home-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      background: #4e54c8;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
-
+  <!-- Biểu tượng ngôi nhà quay về trang chủ -->
+  <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
   <h1>Các dự án đã thực hiện</h1>
   <input type="text" id="searchInput" placeholder="Tìm kiếm dự án...">
 
