@@ -94,11 +94,11 @@
       font-size: 14px;
       border: 2px solid #4e54c8;
       border-radius: 6px;
-      margin-top: 40px;
-      margin-bottom: 40px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      position: absolute;
+      bottom: 30px; /* Đặt ô tìm kiếm ở cuối trang */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
     }
 
     .section-title {
@@ -162,10 +162,6 @@
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=2" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=2" alt="Ảnh 2"></a>
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=3" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=3" alt="Ảnh 3"></a>
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4"></a>
-    <a class="image-link" href="08.2019.jpg" data-lightbox="gallery"><img src="08.2019.jpg" alt="Ảnh 1"></a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=2" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=2" alt="Ảnh 2"></a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=3" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=3" alt="Ảnh 3"></a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4"></a>
   </div>
 
   <!-- Bài viết -->
@@ -185,9 +181,6 @@
     <div class="search-item"><a href="project3.html">Dự án 3: Game giải đố bằng HTML5</a></div>
     <div class="search-item"><a href="project4.html">Dự án 4: Hệ thống học trực tuyến</a></div>
   </div>
-
-  <!-- Tìm kiếm (di chuyển xuống dưới cùng của trang) -->
-  <input type="text" id="searchInput" placeholder="Tìm kiếm bài viết hoặc dự án...">
 
   <!-- Lightbox JS -->
   <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
@@ -209,4 +202,18 @@
       items.forEach(item => {
         const text = item.textContent.toLowerCase();
         const isMatch = text.includes(keyword);
-        item.style.display = isMatch ?
+        item.style.display = isMatch ? "block" : "none";
+
+        if (isMatch && item.parentElement === postList) hasPost = true;
+        if (isMatch && item.parentElement === projectList) hasProject = true;
+      });
+
+      postList.classList.toggle("hidden", !hasPost);
+      postTitle.classList.toggle("hidden", !hasPost);
+      projectList.classList.toggle("hidden", !hasProject);
+      projectTitle.classList.toggle("hidden", !hasProject);
+    });
+  </script>
+
+</body>
+</html>
