@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dự án</title>
+  <title>Bài viết</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -23,17 +23,16 @@
       border: 2px solid #4e54c8;
       border-radius: 6px;
     }
-    .project {
+    .blog {
       margin: 20px 0;
-      font-size: 18px;
     }
-    .project a {
+    .blog a {
       text-decoration: none;
       color: #333;
       font-size: 20px;
       font-weight: bold;
     }
-    .project a:hover {
+    .blog a:hover {
       color: #4e54c8;
     }
 
@@ -59,55 +58,55 @@
 
   <h1>Các bài viết</h1>
 
-  <!-- Tìm kiếm dự án -->
-  <input type="text" id="searchInput" placeholder="Tìm kiếm dự án...">
+  <!-- Tìm kiếm bài viết -->
+  <input type="text" id="searchInput" placeholder="Tìm kiếm bài viết...">
 
-  <div id="projectList">
+  <div id="blogList">
     <!-- Bài viết 1 -->
-    <div class="project">
-      <a href="blog1.html">Bài viết 1: Trang web bán hàng</a>
+    <div class="blog">
+      <a href="post1.html">Bài viết 1: Trang web bán hàng</a>
     </div>
     
     <!-- Bài viết 2 -->
-    <div class="project">
-      <a href="blog2.html">Bài viết 2: Ứng dụng ghi chú bằng React</a>
+    <div class="blog">
+      <a href="post2.html">Bài viết 2: Ứng dụng ghi chú bằng React</a>
     </div>
     
     <!-- Bài viết 3 -->
-    <div class="project">
-      <a href="blog3.html">Bài viết 3: Hệ thống quản lý học sinh</a>
+    <div class="blog">
+      <a href="post3.html">Bài viết 3: Hệ thống quản lý học sinh</a>
     </div>
     
     <!-- Bài viết 4 -->
-    <div class="project">
-      <a href="blog4.html">Bài viết 4: Blog cá nhân bằng Jekyll</a>
+    <div class="blog">
+      <a href="post4.html">Bài viết 4: Blog cá nhân bằng Jekyll</a>
     </div>
     
     <!-- Bài viết 5 -->
-    <div class="project">
-      <a href="blog5.html">Bài viết 5: Ứng dụng quản lý tài chính cá nhân</a>
+    <div class="blog">
+      <a href="post5.html">Bài viết 5: Ứng dụng quản lý tài chính cá nhân</a>
     </div>
     
     <!-- Bài viết 6 -->
-    <div class="project">
-      <a href="blog6.html">Bài viết 6: Hệ thống e-learning với React</a>
+    <div class="blog">
+      <a href="post6.html">Bài viết 6: Hệ thống e-learning với React</a>
     </div>
     
     <!-- Bài viết 7 -->
-    <div class="project">
-      <a href="blog7.html">Bài viết 7: Ứng dụng chat nhóm với Firebase</a>
+    <div class="blog">
+      <a href="post7.html">Bài viết 7: Ứng dụng chat nhóm với Firebase</a>
     </div>
   </div>
 
   <script>
     const searchInput = document.getElementById('searchInput');
-    const projects = document.querySelectorAll('.project');
+    const blogs = document.querySelectorAll('.blog');
 
     searchInput.addEventListener('input', function () {
       const keyword = this.value.toLowerCase();
-      projects.forEach(project => {
-        const title = project.textContent.toLowerCase();
-        project.style.display = title.includes(keyword) ? 'block' : 'none';
+      blogs.forEach(blog => {
+        const title = blog.textContent.toLowerCase();
+        blog.style.display = title.includes(keyword) ? 'block' : 'none';
       });
     });
   </script>
