@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Hướng dẫn sử dụng Git cơ bản</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bài viết 1 - Kinh nghiệm học lập trình</title>
   <style>
     body {
-      font-family: sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      background: #f4f4f4;
+      color: #333;
       line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
     h1 {
       color: #4e54c8;
+      text-align: center;
     }
 
     img {
@@ -22,46 +34,127 @@
       margin: 20px 0;
     }
 
-    a {
-      color: #4e54c8;
-      text-decoration: none;
+    .interactions {
+      margin-top: 40px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
     }
 
-    a.back {
-      display: inline-block;
+    .buttons {
+      display: flex;
+      justify-content: space-around;
       margin-bottom: 20px;
-      color: #888;
-      text-decoration: none;
+    }
+
+    .buttons button {
+      font-size: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.2);
+    }
+
+    .comment-box {
+      text-align: left;
+    }
+
+    .comment-box textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+
+    .comment-box button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4e54c8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .comment-list {
+      margin-top: 20px;
+    }
+
+    .comment-list p {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <a href="blogs.html" class="back">← Quay về danh sách bài viết</a>
+  <div class="container">
+    <h1>Kinh nghiệm học lập trình</h1>
 
-  <h1>Hướng dẫn sử dụng Git cơ bản cho người mới</h1>
+    <p>Lập trình không chỉ là việc viết code, mà còn là quá trình tư duy và giải quyết vấn đề. Dưới đây là một số kinh nghiệm cá nhân:</p>
+    
+    <ul>
+      <li>Học các khái niệm cơ bản thật chắc: biến, vòng lặp, hàm, mảng, v.v.</li>
+      <li>Luyện tập thường xuyên bằng cách làm bài tập hoặc dự án nhỏ.</li>
+      <li>Đọc code của người khác để học cách tổ chức và tối ưu chương trình.</li>
+    </ul>
 
-  <p>Git là hệ thống quản lý mã nguồn phân tán phổ biến nhất hiện nay. Trong bài viết này, mình sẽ hướng dẫn cách sử dụng Git cơ bản gồm:</p>
+    <img src="https://source.unsplash.com/800x400/?coding" alt="Lập trình">
 
-  <ul>
-    <li>Khởi tạo kho Git</li>
-    <li>Commit thay đổi</li>
-    <li>Push code lên GitHub</li>
-  </ul>
+    <p>Bạn có thể xem thêm tài liệu tại <a href="https://www.w3schools.com" target="_blank">W3Schools</a> hoặc <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>.</p>
 
-  <img src="https://source.unsplash.com/800x400/?git" alt="Ảnh về Git">
+    <!-- Phần tương tác -->
+    <div class="interactions">
+      <div class="buttons">
+        <button onclick="handleClick('heart')">❤️ <span id="heart-count">0</span></button>
+        <button onclick="handleClick('like')">👍 <span id="like-count">0</span></button>
+        <button onclick="handleClick('dislike')">👎 <span id="dislike-count">0</span></button>
+      </div>
 
-  <p>Đầu tiên, bạn cần cài Git tại:  
-    <a href="https://git-scm.com/" target="_blank">https://git-scm.com/</a>
-  </p>
+      <div class="comment-box">
+        <textarea id="comment-input" placeholder="Viết bình luận..."></textarea>
+        <button onclick="addComment()">Gửi</button>
 
-  <p>Sau đó, mở terminal và chạy lệnh sau để khởi tạo dự án Git:</p>
+        <div class="comment-list" id="comment-list"></div>
+      </div>
+    </div>
+  </div>
 
-  <pre>
-git init
-git add .
-git commit -m "Initial commit"
-  </pre>
+  <script>
+    let heart = 0, like = 0, dislike = 0;
+
+    function handleClick(type) {
+      if (type === 'heart') {
+        heart++;
+        document.getElementById('heart-count').innerText = heart;
+      } else if (type === 'like') {
+        like++;
+        document.getElementById('like-count').innerText = like;
+      } else if (type === 'dislike') {
+        dislike++;
+        document.getElementById('dislike-count').innerText = dislike;
+      }
+    }
+
+    function addComment() {
+      const input = document.getElementById('comment-input');
+      const comment = input.value.trim();
+      if (comment) {
+        const commentList = document.getElementById('comment-list');
+        const p = document.createElement('p');
+        p.innerText = comment;
+        commentList.appendChild(p);
+        input.value = '';
+      }
+    }
+  </script>
 
 </body>
 </html>
