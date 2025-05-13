@@ -15,7 +15,7 @@
       color: #333;
       text-align: center;
       padding: 60px 20px;
-      position: relative; /* Để định vị ô tìm kiếm */
+      position: relative;
     }
 
     .avatar {
@@ -94,10 +94,11 @@
       font-size: 14px;
       border: 2px solid #4e54c8;
       border-radius: 6px;
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      z-index: 999;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .section-title {
@@ -167,9 +168,6 @@
     <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4" data-lightbox="gallery"><img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4"></a>
   </div>
 
-  <!-- Tìm kiếm -->
-  <input type="text" id="searchInput" placeholder="Tìm kiếm bài viết hoặc dự án...">
-
   <!-- Bài viết -->
   <div class="section-title hidden" id="postTitle">Bài viết</div>
   <div class="post-list hidden" id="postList">
@@ -187,6 +185,9 @@
     <div class="search-item"><a href="project3.html">Dự án 3: Game giải đố bằng HTML5</a></div>
     <div class="search-item"><a href="project4.html">Dự án 4: Hệ thống học trực tuyến</a></div>
   </div>
+
+  <!-- Tìm kiếm (di chuyển xuống dưới cùng của trang) -->
+  <input type="text" id="searchInput" placeholder="Tìm kiếm bài viết hoặc dự án...">
 
   <!-- Lightbox JS -->
   <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
@@ -208,18 +209,4 @@
       items.forEach(item => {
         const text = item.textContent.toLowerCase();
         const isMatch = text.includes(keyword);
-        item.style.display = isMatch ? "block" : "none";
-
-        if (isMatch && item.parentElement === postList) hasPost = true;
-        if (isMatch && item.parentElement === projectList) hasProject = true;
-      });
-
-      postList.classList.toggle("hidden", !hasPost);
-      postTitle.classList.toggle("hidden", !hasPost);
-      projectList.classList.toggle("hidden", !hasProject);
-      projectTitle.classList.toggle("hidden", !hasProject);
-    });
-  </script>
-
-</body>
-</html>
+        item.style.display = isMatch ?
