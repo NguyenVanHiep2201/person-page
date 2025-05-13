@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Trang cá nhân - [NGUYỄN VĂN HIỆP]</title>
-
-  <!-- Lightbox CSS -->
+  <title>Trang cá nhân - NGUYỄN VĂN HIỆP</title>
   <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
 
   <style>
@@ -17,16 +15,16 @@
       padding: 60px 20px;
     }
 
+    h1 {
+      margin-top: 20px;
+      color: #4e54c8;
+    }
+
     .avatar {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       border: 4px solid #4e54c8;
-    }
-
-    h1 {
-      margin-top: 20px;
-      color: #4e54c8;
     }
 
     .menu {
@@ -47,6 +45,33 @@
 
     .menu a:hover {
       background: #3a3fc4;
+    }
+
+    .search-box {
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 240px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .search-box select,
+    .search-box button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background-color: #4e54c8;
+      color: white;
+      cursor: pointer;
     }
 
     .gallery {
@@ -74,7 +99,7 @@
 </head>
 <body>
 
-  <h1>[Tên bạn]</h1>
+  <h1>NGUYỄN VĂN HIỆP</h1>
   <p>A journey of a thousand miles begins with a single step</p>
 
   <a id="avatar-link" href="08.2019.jpg">
@@ -88,58 +113,28 @@
     <a href="contact.html">Liên hệ</a>
   </div>
 
-  <div class="gallery">
-    <a class="image-link" href="08.2019.jpg">
-      <img src="08.2019.jpg" alt="Ảnh 1">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=2">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=2" alt="Ảnh 2">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=3">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=3" alt="Ảnh 3">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=5">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=5" alt="Ảnh 5">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=6">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=6" alt="Ảnh 6">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=7">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=7" alt="Ảnh 7">
-    </a>
-    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=8">
-      <img src="https://source.unsplash.com/300x200/?landscape&sig=8" alt="Ảnh 8">
-    </a>
+  <!-- Ô tìm kiếm -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Nhập tiêu đề cần tìm...">
+    <select id="searchType">
+      <option value="blogs">Bài viết</option>
+      <option value="projects">Dự án</option>
+    </select>
+    <button onclick="performSearch()">Tìm</button>
   </div>
 
-  <!-- Lightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
-  <script>
-    const isMobile = window.innerWidth <= 768;
-
-    const links = document.querySelectorAll('.image-link');
-    const avatarLink = document.getElementById('avatar-link');
-
-    links.forEach(link => {
-      const imgSrc = link.getAttribute('href');
-      if (isMobile) {
-        link.setAttribute('data-lightbox', 'gallery');
-        link.setAttribute('data-title', 'Ảnh phong cảnh');
-      } else {
-        link.setAttribute('target', '_blank');
-      }
-    });
-
-    if (isMobile) {
-      avatarLink.setAttribute('data-lightbox', 'avatar');
-      avatarLink.setAttribute('data-title', 'Ảnh đại diện');
-    } else {
-      avatarLink.setAttribute('target', '_blank');
-    }
-  </script>
-
-</body>
-</html>
+  <!-- Bộ sưu tập ảnh -->
+  <div class="gallery">
+    <a class="image-link" href="08.2019.jpg"><img src="08.2019.jpg" alt="Ảnh 1"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=2">
+      <img src="https://source.unsplash.com/300x200/?landscape&sig=2" alt="Ảnh 2"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=3">
+      <img src="https://source.unsplash.com/300x200/?landscape&sig=3" alt="Ảnh 3"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=4">
+      <img src="https://source.unsplash.com/300x200/?landscape&sig=4" alt="Ảnh 4"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=5">
+      <img src="https://source.unsplash.com/300x200/?landscape&sig=5" alt="Ảnh 5"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=6">
+      <img src="https://source.unsplash.com/300x200/?landscape&sig=6" alt="Ảnh 6"></a>
+    <a class="image-link" href="https://source.unsplash.com/1200x800/?landscape&sig=7">
+      <img src="https://source.unsplash.com/300x200/?landscape
