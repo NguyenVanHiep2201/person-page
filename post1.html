@@ -13,19 +13,23 @@
       max-width: 800px;
       margin: auto;
     }
+
     h1 {
       color: #4e54c8;
       text-align: center;
     }
+
     .content {
       margin-top: 30px;
       font-size: 18px;
       line-height: 1.6;
     }
+
     .interactions {
       margin-top: 40px;
       text-align: center;
     }
+
     .reaction-btn {
       font-size: 20px;
       margin: 8px;
@@ -36,21 +40,32 @@
       display: inline-block;
       transition: background 0.3s;
     }
+
     .reaction-btn:hover {
       background: #d0d0ff;
     }
+
     .reaction-count {
       display: inline-block;
       margin-left: 6px;
       font-size: 14px;
       color: #666;
     }
+
+    .total-reactions {
+      margin-top: 16px;
+      font-size: 16px;
+      color: #555;
+    }
+
     .comment-section {
       margin-top: 40px;
     }
+
     .comment-section h3 {
       color: #4e54c8;
     }
+
     .comment-section textarea {
       width: 100%;
       padding: 10px;
@@ -59,6 +74,7 @@
       border-radius: 6px;
       border: 1px solid #ccc;
     }
+
     .comment-section button {
       margin-top: 10px;
       background: #4e54c8;
@@ -69,12 +85,15 @@
       cursor: pointer;
       font-weight: bold;
     }
+
     .comment-section button:hover {
       background: #3a3fc4;
     }
+
     .comments-list {
       margin-top: 20px;
     }
+
     .comment {
       background: #fff;
       padding: 12px;
@@ -82,6 +101,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
+
     .home-icon {
       position: fixed;
       top: 20px;
@@ -98,7 +118,9 @@
 </head>
 <body>
 
+  <!-- Nút quay về -->
   <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
+
   <h1>Bài viết 1: Hướng dẫn lập trình</h1>
 
   <div class="content">
@@ -109,6 +131,9 @@
     <div class="reaction-btn" onclick="react('heart')">❤️ <span class="reaction-count" id="heartCount">0</span></div>
     <div class="reaction-btn" onclick="react('like')">👍 <span class="reaction-count" id="likeCount">0</span></div>
     <div class="reaction-btn" onclick="react('dislike')">👎 <span class="reaction-count" id="dislikeCount">0</span></div>
+    <div class="total-reactions">
+      Tổng lượt tương tác: <strong id="totalReactions">0</strong>
+    </div>
   </div>
 
   <div class="comment-section">
@@ -118,71 +143,67 @@
     <div class="comments-list" id="commentsList"></div>
   </div>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCFkirbAebFrQf6HkBtGvs5Yb-PfMiEcNU",
-      authDomain: "person-pages.firebaseapp.com",
-      projectId: "person-pages",
-      storageBucket: "person-pages.firebasestorage.app",
-      messagingSenderId: "262938467134",
-      appId: "1:262938467134:web:afaf4ff5bb21f17fbf2a6f",
-      measurementId: "G-QE88C5LG63"
-    };
+    const postId = 'post-1';
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    const postId = "post-1";
-
-    async function loadReactions() {
-      const doc = await db.collection("reactions").doc(postId).get();
-      const data = doc.exists ? doc.data() : {};
-      document.getElementById('heartCount').innerText = data.heart || 0;
-      document.getElementById('likeCount').innerText = data.like || 0;
-      document.getElementById('dislikeCount').innerText = data.dislike || 0;
+    function getReactions() {
+      return JSON.parse(localStorage.getItem('reactions_' + postId)) || { heart: 0, like: 0, dislike: 0 };
     }
 
-    async function react(type) {
-      const ref = db.collection("reactions").doc(postId);
-      await ref.set({ [type]: firebase.firestore.FieldValue.increment(1) }, { merge: true });
-      loadReactions();
+    function saveReactions(reactions) {
+      localStorage.setItem('reactions_' + postId, JSON.stringify(reactions));
     }
 
-    async function addComment() {
-      const text = document.getElementById("commentInput").value.trim();
+    function updateReactionUI() {
+      const { heart, like, dislike } = getReactions();
+      document.getElementById('heartCount').innerText = heart;
+      document.getElementById('likeCount').innerText = like;
+      document.getElementById('dislikeCount').innerText = dislike;
+      document.getElementById('totalReactions').innerText = heart + like + dislike;
+    }
+
+    function react(type) {
+      const reactions = getReactions();
+      reactions[type]++;
+      saveReactions(reactions);
+      updateReactionUI();
+    }
+
+    function getComments() {
+      return JSON.parse(localStorage.getItem('comments_' + postId)) || [];
+    }
+
+    function saveComments(comments) {
+      localStorage.setItem('comments_' + postId, JSON.stringify(comments));
+    }
+
+    function addComment() {
+      const input = document.getElementById('commentInput');
+      const text = input.value.trim();
       if (!text) return;
-      await db.collection("comments").add({
-        postId,
-        text,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      document.getElementById("commentInput").value = "";
-      loadComments();
+
+      const comments = getComments();
+      comments.unshift({ text, time: new Date().toLocaleString() });
+      saveComments(comments);
+      input.value = '';
+      updateCommentUI();
     }
 
-    async function loadComments() {
-      const snap = await db.collection("comments")
-        .where("postId", "==", postId)
-        .orderBy("timestamp", "desc")
-        .get();
-      const list = document.getElementById("commentsList");
-      list.innerHTML = "";
-      snap.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.className = "comment";
-        div.innerText = data.text;
-        list.appendChild(div);
+    function updateCommentUI() {
+      const comments = getComments();
+      const container = document.getElementById('commentsList');
+      container.innerHTML = '';
+      comments.forEach(comment => {
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
+        container.appendChild(div);
       });
     }
 
-    // Load khi trang mở
-    loadReactions();
-    loadComments();
+    // Khởi động khi load trang
+    updateReactionUI();
+    updateCommentUI();
   </script>
 
 </body>
