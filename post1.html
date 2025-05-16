@@ -13,23 +13,19 @@
       max-width: 800px;
       margin: auto;
     }
-
     h1 {
       color: #4e54c8;
       text-align: center;
     }
-
     .content {
       margin-top: 30px;
       font-size: 18px;
       line-height: 1.6;
     }
-
     .interactions {
       margin-top: 40px;
       text-align: center;
     }
-
     .reaction-btn {
       font-size: 20px;
       margin: 8px;
@@ -40,32 +36,26 @@
       display: inline-block;
       transition: background 0.3s;
     }
-
     .reaction-btn:hover {
       background: #d0d0ff;
     }
-
     .reaction-count {
       display: inline-block;
       margin-left: 6px;
       font-size: 14px;
       color: #666;
     }
-
     .total-reactions {
       margin-top: 16px;
       font-size: 16px;
       color: #555;
     }
-
     .comment-section {
       margin-top: 40px;
     }
-
     .comment-section h3 {
       color: #4e54c8;
     }
-
     .comment-section textarea {
       width: 100%;
       padding: 10px;
@@ -74,7 +64,6 @@
       border-radius: 6px;
       border: 1px solid #ccc;
     }
-
     .comment-section button {
       margin-top: 10px;
       background: #4e54c8;
@@ -85,15 +74,12 @@
       cursor: pointer;
       font-weight: bold;
     }
-
     .comment-section button:hover {
       background: #3a3fc4;
     }
-
     .comments-list {
       margin-top: 20px;
     }
-
     .comment {
       background: #fff;
       padding: 12px;
@@ -101,7 +87,6 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
     .home-icon {
       position: fixed;
       top: 20px;
@@ -143,67 +128,91 @@
     <div class="comments-list" id="commentsList"></div>
   </div>
 
-  <script>
-    const postId = 'post-1';
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getDatabase, ref, get, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
-    function getReactions() {
-      return JSON.parse(localStorage.getItem('reactions_' + postId)) || { heart: 0, like: 0, dislike: 0 };
-    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyCFkirbAebFrQf6HkBtGvs5Yb-PfMiEcNU",
+      authDomain: "person-pages.firebaseapp.com",
+      projectId: "person-pages",
+      storageBucket: "person-pages.firebasestorage.app",
+      messagingSenderId: "262938467134",
+      appId: "1:262938467134:web:afaf4ff5bb21f17fbf2a6f",
+      measurementId: "G-QE88C5LG63"
+    };
 
-    function saveReactions(reactions) {
-      localStorage.setItem('reactions_' + postId, JSON.stringify(reactions));
-    }
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const postId = "post-1";
 
-    function updateReactionUI() {
-      const { heart, like, dislike } = getReactions();
-      document.getElementById('heartCount').innerText = heart;
-      document.getElementById('likeCount').innerText = like;
-      document.getElementById('dislikeCount').innerText = dislike;
-      document.getElementById('totalReactions').innerText = heart + like + dislike;
-    }
+    const heartCountEl = document.getElementById("heartCount");
+    const likeCountEl = document.getElementById("likeCount");
+    const dislikeCountEl = document.getElementById("dislikeCount");
+    const totalReactionsEl = document.getElementById("totalReactions");
 
-    function react(type) {
-      const reactions = getReactions();
-      reactions[type]++;
-      saveReactions(reactions);
-      updateReactionUI();
-    }
-
-    function getComments() {
-      return JSON.parse(localStorage.getItem('comments_' + postId)) || [];
-    }
-
-    function saveComments(comments) {
-      localStorage.setItem('comments_' + postId, JSON.stringify(comments));
-    }
-
-    function addComment() {
-      const input = document.getElementById('commentInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const comments = getComments();
-      comments.unshift({ text, time: new Date().toLocaleString() });
-      saveComments(comments);
-      input.value = '';
-      updateCommentUI();
-    }
-
-    function updateCommentUI() {
-      const comments = getComments();
-      const container = document.getElementById('commentsList');
-      container.innerHTML = '';
-      comments.forEach(comment => {
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
-        container.appendChild(div);
+    // Lắng nghe realtime thay đổi phản hồi
+    function listenReactions() {
+      const reactionsRef = ref(db, `posts/${postId}/reactions`);
+      onValue(reactionsRef, (snapshot) => {
+        const data = snapshot.val() || {};
+        const heart = data.heart || 0;
+        const like = data.like || 0;
+        const dislike = data.dislike || 0;
+        heartCountEl.textContent = heart;
+        likeCountEl.textContent = like;
+        dislikeCountEl.textContent = dislike;
+        totalReactionsEl.textContent = heart + like + dislike;
       });
     }
 
-    // Khởi động khi load trang
-    updateReactionUI();
-    updateCommentUI();
+    // Gửi phản hồi
+    function react(type) {
+      const typeRef = ref(db, `posts/${postId}/reactions/${type}`);
+      get(typeRef).then(snapshot => {
+        const current = snapshot.exists() ? snapshot.val() : 0;
+        set(typeRef, current + 1);
+      });
+    }
+
+    // Lắng nghe bình luận
+    function listenComments() {
+      const commentsRef = ref(db, `posts/${postId}/comments`);
+      onValue(commentsRef, (snapshot) => {
+        const comments = snapshot.val() || {};
+        const container = document.getElementById("commentsList");
+        container.innerHTML = "";
+        const entries = Object.values(comments).reverse(); // đảo ngược cho mới lên đầu
+        entries.forEach(comment => {
+          const div = document.createElement("div");
+          div.className = "comment";
+          div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    // Thêm bình luận
+    function addComment() {
+      const input = document.getElementById("commentInput");
+      const text = input.value.trim();
+      if (!text) return;
+      const commentsRef = ref(db, `posts/${postId}/comments`);
+      push(commentsRef, {
+        text: text,
+        time: new Date().toLocaleString()
+      });
+      input.value = "";
+    }
+
+    // Gắn hàm cho global
+    window.react = react;
+    window.addComment = addComment;
+
+    // Bắt đầu lắng nghe khi tải trang
+    listenReactions();
+    listenComments();
   </script>
 
 </body>
