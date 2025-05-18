@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bài viết 3 Đi tìm lý tưởng sống - [Tên bạn]</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      color: #4e54c8;
+    }
+
+    .content {
+      margin-top: 20px;
+      text-align: left;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    /* Thêm biểu tượng ngôi nhà */
+    .home-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      background: #4e54c8;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Biểu tượng ngôi nhà quay về trang chủ -->
+  <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
+
+  <h1>Đi tìm lý tưởng sống</h1>
+  <div class="content">
+    <p> 
+  Ai cũng vậy, cái kết cuối cùng của cuộc sống là cái chết, ta đến với thế giới với hai bàn tay trắng và ra đi cũng như vậy, không thể đem bất cứ thứ gì theo. Vậy tại sao, ta vẫn cố gắng, vẫn làm việc không ngừng nghỉ. Đời người ngắn ngủi, chớp mắt là hết 1 ngày, ngoảnh đầu là hết 1 năm, quay lưng là hết cả một kiếp. 10 năm sau khi ta ra đi, thân thể đã chẳng còn, ngày giỗ của ta chỉ là dịp sum họp người thân, người ghét ta đã từ lâu chỉ nhớ mơ hồ tên ta. 20 năm nữa, ta đã trở thành hư vô, như chưa từng tồn tại.
+   Có nhiều lúc ta tự hỏi: sở thích của bản thân là gì? lý tưởng sống là gì?. Ta đi làm chăm chỉ, cố gắng hết mình. Đó có thể là sống nỗ lực vì tương lai, vì trách nhiệm, vì niểm tin vào tương lai tươi sáng hơn. Cũng có thể cay đắng nhận ra, đôi khi ta đã quá nghiêm khắc, dằn vặt chính mình chỉ vì nỗi sợ trách nhiệm, nghèo, bệnh, chết mà quên đi thưởng thức cuộc sống.
+   Đi tìm lý tưởng sống không dễ, có lẽ chúng ta phải sống chậm lại, quan sát, lắng nghe, trải nghiệm để rồi tự nhìn nhận lại chính mình để dần hình thành lý tưởng sống. Lý tưởng sống không cần phải lớn lao như là thay đổi thế giới, ghi tên mình vào dòng chảy của lịch sử. Nó có thể là làm sao sống cho tử tế, trở thành 1 công dân tốt, có ích. 
+     Cuộc sống là một hành trình, nơi mà quá khứ không thể thay đổi, tương lai còn chưa tới, chúng ta chỉ có thể trân trọng giây phút hiện tại này. Hãy cho phép bản thân được trải nghiệm và khám phá cuộc sống. 
+    </p>
+  </div>
+
+</body>
+</html>
