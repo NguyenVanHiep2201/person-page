@@ -30,14 +30,28 @@
     .blog {
       margin: 20px 0;
       text-align: left; /* Đảm bảo các bài viết căn lề trái */
-    }
-    .blog a {
-      text-decoration: none;
-      color: #333;
-      font-size: 20px;
-      font-weight: bold;
-      display: block; /* Đảm bảo liên kết chiếm toàn bộ chiều rộng */
-    }
+  
+      .blog {
+  margin: 12px 0;
+  padding-left: 15px; /* Giúp các dòng lùi nhẹ vào trong cho gọn */
+}
+
+.blog a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.blog a:hover {
+  color: #4e54c8;
+  background: #f1f3ff; /* Nền nhẹ khi hover để dễ đọc hơn */
+}
+
     .blog a:hover {
       color: #4e54c8;
     }
