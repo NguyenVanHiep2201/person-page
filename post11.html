@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bài viết 1 - Cảm ơn và xin lỗi </title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #4e54c8;
+      text-align: center;
+    }
+    .content {
+      margin-top: 30px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .interactions {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .reaction-btn {
+      font-size: 20px;
+      margin: 8px;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: #eee;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .reaction-btn:hover {
+      background: #d0d0ff;
+    }
+    .reaction-count {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 14px;
+      color: #666;
+    }
+    .total-reactions {
+      margin-top: 16px;
+      font-size: 16px;
+      color: #555;
+    }
+    .comment-section {
+      margin-top: 40px;
+    }
+    .comment-section h3 {
+      color: #4e54c8;
+    }
+    .comment-section textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .comment-section button {
+      margin-top: 10px;
+      background: #4e54c8;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .comment-section button:hover {
+      background: #3a3fc4;
+    }
+    .comments-list {
+      margin-top: 20px;
+    }
+    .comment {
+      background: #fff;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .home-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 26px;
+      background: #4e54c8;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nút quay về -->
+  <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
+
+  <h1>Bài viết 1: Cảm ơn và xinn lỗi</h1>
+
+  <div class="content">
+    <p>                                                              Cảm ơn và xin lỗi
+Hai câu nói “cảm ơn” và “xin lỗi”  có ý nghĩa to lớn và sâu sắc. 
+Cảm ơn thể hiện sự biết ơn của chúng ta, là chiếc cầu nối để ta gắn kết với thế giới, với cộng đồng, với những mối quan hệ; là cách để ta thể hiện sự biết ơn, tôn trọng. Hãy cảm ơn tất cả những gì diễn ra xung quanh cuộc sống của bạn, bạn sẽ thấy cuộc sống này có thật nhiều điều tốt đẹp và tử tế.
+Xin lỗi. Trong quá trình trưởng thành, dù vô tình hay cố tình có thể chúng ta đã, đang, sẽ làm tổn thương 1 ai đó, có thể là chính chúng ta. Ta nợ chính mình một lần sống tử tế, một nụ cười hạnh phúc trọn vẹn, một ngày an yên không suy nghĩ. 
+Vì ngại ngùng, xấu hổ, sĩ diện mà ta không dễ mở lời nói cảm ơn, xin lỗi dù biết mình nên nói ra. Hoặc có thể theo thói quen mà nói một cách xã giao không chân thành. 
+Luôn nhắc nhở bản thân hãy cố gắng thực hành nói lời cảm ơn và xin lỗi đúng lúc, đúng cách, và thật lòng. Cảm ơn vì điều gì đó, khi ai đó giúp mình dù là điều nhỏ nhất. Xin lỗi vì điều gì đó, khi ta làm ai đó tổn thương, gây phiền hà cho người khác, đã nhận ra được lỗi sai của mình.
+Chúng ta có thể học cách tiết kiệm lời cảm ơn và xin lỗi. Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống sẽ nhẹ nhàng hơn với chính mình rất nhiều. Đó là cách để ta sống có trách nhiệm hơn, biết cảm thông và nuôi dưỡng tâm hồn chính mình.     
+</p>
+  </div>
+
+  <div class="interactions">
+    <div class="reaction-btn" onclick="react('heart')">❤️ <span class="reaction-count" id="heartCount">0</span></div>
+    <div class="reaction-btn" onclick="react('like')">👍 <span class="reaction-count" id="likeCount">0</span></div>
+    <div class="reaction-btn" onclick="react('dislike')">👎 <span class="reaction-count" id="dislikeCount">0</span></div>
+    <div class="total-reactions">
+      Tổng lượt tương tác: <strong id="totalReactions">0</strong>
+    </div>
+  </div>
+
+  <div class="comment-section">
+    <h3>Bình luận</h3>
+    <textarea id="commentInput" rows="3" placeholder="Nhập bình luận của bạn..."></textarea>
+    <button onclick="addComment()">Gửi bình luận</button>
+    <div class="comments-list" id="commentsList"></div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getDatabase, ref, get, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCFkirbAebFrQf6HkBtGvs5Yb-PfMiEcNU",
+      authDomain: "person-pages.firebaseapp.com",
+      projectId: "person-pages",
+      storageBucket: "person-pages.firebasestorage.app",
+      messagingSenderId: "262938467134",
+      appId: "1:262938467134:web:afaf4ff5bb21f17fbf2a6f",
+      measurementId: "G-QE88C5LG63"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const postId = "post-1";
+
+    const heartCountEl = document.getElementById("heartCount");
+    const likeCountEl = document.getElementById("likeCount");
+    const dislikeCountEl = document.getElementById("dislikeCount");
+    const totalReactionsEl = document.getElementById("totalReactions");
+
+    // Lắng nghe realtime thay đổi phản hồi
+    function listenReactions() {
+      const reactionsRef = ref(db, `posts/${postId}/reactions`);
+      onValue(reactionsRef, (snapshot) => {
+        const data = snapshot.val() || {};
+        const heart = data.heart || 0;
+        const like = data.like || 0;
+        const dislike = data.dislike || 0;
+        heartCountEl.textContent = heart;
+        likeCountEl.textContent = like;
+        dislikeCountEl.textContent = dislike;
+        totalReactionsEl.textContent = heart + like + dislike;
+      });
+    }
+
+    // Gửi phản hồi
+    function react(type) {
+      const typeRef = ref(db, `posts/${postId}/reactions/${type}`);
+      get(typeRef).then(snapshot => {
+        const current = snapshot.exists() ? snapshot.val() : 0;
+        set(typeRef, current + 1);
+      });
+    }
+
+    // Lắng nghe bình luận
+    function listenComments() {
+      const commentsRef = ref(db, `posts/${postId}/comments`);
+      onValue(commentsRef, (snapshot) => {
+        const comments = snapshot.val() || {};
+        const container = document.getElementById("commentsList");
+        container.innerHTML = "";
+        const entries = Object.values(comments).reverse(); // đảo ngược cho mới lên đầu
+        entries.forEach(comment => {
+          const div = document.createElement("div");
+          div.className = "comment";
+          div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    // Thêm bình luận
+    function addComment() {
+      const input = document.getElementById("commentInput");
+      const text = input.value.trim();
+      if (!text) return;
+      const commentsRef = ref(db, `posts/${postId}/comments`);
+      push(commentsRef, {
+        text: text,
+        time: new Date().toLocaleString()
+      });
+      input.value = "";
+    }
+
+    // Gắn hàm cho global
+    window.react = react;
+    window.addComment = addComment;
+
+    // Bắt đầu lắng nghe khi tải trang
+    listenReactions();
+    listenComments();
+  </script>
+
+</body>
+</html>
