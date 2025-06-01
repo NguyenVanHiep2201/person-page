@@ -106,10 +106,17 @@
   <!-- Nút quay về -->
   <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
 
-  <h1>Bài viết 1: Cảm ơn và xinn lỗi</h1>
+  <h1>Bài viết 9:</h1>
 
   <div class="content">
-    <p>                                                            </p>
+    <p>                                                          
+    
+    
+    
+    
+    
+    
+    </p>
   </div>
 
   <div class="interactions">
@@ -128,92 +135,7 @@
     <div class="comments-list" id="commentsList"></div>
   </div>
 
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-    import { getDatabase, ref, get, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCFkirbAebFrQf6HkBtGvs5Yb-PfMiEcNU",
-      authDomain: "person-pages.firebaseapp.com",
-      projectId: "person-pages",
-      storageBucket: "person-pages.firebasestorage.app",
-      messagingSenderId: "262938467134",
-      appId: "1:262938467134:web:afaf4ff5bb21f17fbf2a6f",
-      measurementId: "G-QE88C5LG63"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const postId = "post-1";
-
-    const heartCountEl = document.getElementById("heartCount");
-    const likeCountEl = document.getElementById("likeCount");
-    const dislikeCountEl = document.getElementById("dislikeCount");
-    const totalReactionsEl = document.getElementById("totalReactions");
-
-    // Lắng nghe realtime thay đổi phản hồi
-    function listenReactions() {
-      const reactionsRef = ref(db, `posts/${postId}/reactions`);
-      onValue(reactionsRef, (snapshot) => {
-        const data = snapshot.val() || {};
-        const heart = data.heart || 0;
-        const like = data.like || 0;
-        const dislike = data.dislike || 0;
-        heartCountEl.textContent = heart;
-        likeCountEl.textContent = like;
-        dislikeCountEl.textContent = dislike;
-        totalReactionsEl.textContent = heart + like + dislike;
-      });
-    }
-
-    // Gửi phản hồi
-    function react(type) {
-      const typeRef = ref(db, `posts/${postId}/reactions/${type}`);
-      get(typeRef).then(snapshot => {
-        const current = snapshot.exists() ? snapshot.val() : 0;
-        set(typeRef, current + 1);
-      });
-    }
-
-    // Lắng nghe bình luận
-    function listenComments() {
-      const commentsRef = ref(db, `posts/${postId}/comments`);
-      onValue(commentsRef, (snapshot) => {
-        const comments = snapshot.val() || {};
-        const container = document.getElementById("commentsList");
-        container.innerHTML = "";
-        const entries = Object.values(comments).reverse(); // đảo ngược cho mới lên đầu
-        entries.forEach(comment => {
-          const div = document.createElement("div");
-          div.className = "comment";
-          div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
-          container.appendChild(div);
-        });
-      });
-    }
-
-    // Thêm bình luận
-    function addComment() {
-      const input = document.getElementById("commentInput");
-      const text = input.value.trim();
-      if (!text) return;
-      const commentsRef = ref(db, `posts/${postId}/comments`);
-      push(commentsRef, {
-        text: text,
-        time: new Date().toLocaleString()
-      });
-      input.value = "";
-    }
-
-    // Gắn hàm cho global
-    window.react = react;
-    window.addComment = addComment;
-
-    // Bắt đầu lắng nghe khi tải trang
-    listenReactions();
-    listenComments();
-  </script>
+  
 
 </body>
 </html>
