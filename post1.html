@@ -3,113 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bài viết 1 - "MÕM" </title>
+  <title>Bài viết 1 - Cảm ơn và Xin lỗi</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    h1 {
-      color: #4e54c8;
-      text-align: center;
-    }
-    .content {
-      margin-top: 30px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .interactions {
-      margin-top: 40px;
-      text-align: center;
-    }
-    .reaction-btn {
-      font-size: 20px;
-      margin: 8px;
-      cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 30px;
-      background: #eee;
-      display: inline-block;
-      transition: background 0.3s;
-    }
-    .reaction-btn:hover {
-      background: #d0d0ff;
-    }
-    .reaction-count {
-      display: inline-block;
-      margin-left: 6px;
-      font-size: 14px;
-      color: #666;
-    }
-    .total-reactions {
-      margin-top: 16px;
-      font-size: 16px;
-      color: #555;
-    }
-    .comment-section {
-      margin-top: 40px;
-    }
-    .comment-section h3 {
-      color: #4e54c8;
-    }
-    .comment-section textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px; 
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    .comment-section button {
-      margin-top: 10px;
-      background: #4e54c8;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .comment-section button:hover {
-      background: #3a3fc4;
-    }
-    .comments-list {
-      margin-top: 20px;
-    }
-    .comment {
-      background: #fff;
-      padding: 12px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .home-icon {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 26px;
-      background: #4e54c8;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 50%;
-      text-decoration: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
+    /* (Giữ nguyên phần CSS như bạn đã có) */
   </style>
 </head>
 <body>
-
-  <!-- Nút quay về -->
   <a href="index.html" class="home-icon" title="Về trang chủ">🏠</a>
-
   <h1>Bài viết 1: Cảm ơn và xin lỗi</h1>
 
   <div class="content">
-    <p>                                                              
+   <p>                                                              
 <p>Hai câu nói “cảm ơn” và “xin lỗi”  có ý nghĩa to lớn và sâu sắc.</p>
 <p>Cảm ơn thể hiện sự biết ơn của chúng ta, là chiếc cầu nối để ta gắn kết với thế giới, với cộng đồng, với những mối quan hệ.
 Là cách để ta thể hiện sự biết ơn, tôn trọng. Hãy cảm ơn tất cả những gì diễn ra xung quanh cuộc sống của bạn, bạn sẽ thấy cuộc sống này có thật nhiều điều tốt đẹp và tử tế. </p>
@@ -124,7 +28,107 @@ Cảm ơn vì điều gì đó, khi ai đó giúp mình dù là điều nhỏ nh
 Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống sẽ nhẹ nhàng hơn với chính mình rất nhiều.
 Đó là cách để ta sống có trách nhiệm hơn, biết cảm thông và nuôi dưỡng tâm hồn chính mình.</p>
 </p>
+
   </div>
+
+  <div class="interactions">
+    <div class="reaction-btn" onclick="react('heart')">❤️ <span id="heartCount">0</span></div>
+    <div class="reaction-btn" onclick="react('like')">👍 <span id="likeCount">0</span></div>
+    <div class="reaction-btn" onclick="react('dislike')">👎 <span id="dislikeCount">0</span></div>
+    <div class="total-reactions">
+      Tổng lượt tương tác: <strong id="totalReactions">0</strong>
+    </div>
+  </div>
+
+  <div class="comment-section">
+    <h3>Bình luận</h3>
+    <textarea id="commentInput" rows="3" placeholder="Nhập bình luận của bạn..."></textarea>
+    <button onclick="addComment()">Gửi bình luận</button>
+    <div class="comments-list" id="commentsList"></div>
+  </div>
+
+  <!-- Firebase SDK & Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getDatabase, ref, onValue, update, push, set } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCtPzaCgVhry6kfoXgivm0H0781opVW2p4",
+      authDomain: "person-page.firebaseapp.com",
+      projectId: "person-page",
+      storageBucket: "person-page.firebasestorage.app",
+      messagingSenderId: "611998150940",
+      appId: "1:611998150940:web:2431d0ac876e0783e94ad9",
+      measurementId: "G-6MKX67N5LH",
+      databaseURL: "https://person-page-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const postId = 'post1';
+
+    // Lấy reactions từ Firebase
+    function fetchReactions() {
+      const reactionsRef = ref(db, 'reactions/' + postId);
+      onValue(reactionsRef, (snapshot) => {
+        const data = snapshot.val() || { heart: 0, like: 0, dislike: 0 };
+        document.getElementById('heartCount').innerText = data.heart || 0;
+        document.getElementById('likeCount').innerText = data.like || 0;
+        document.getElementById('dislikeCount').innerText = data.dislike || 0;
+        document.getElementById('totalReactions').innerText = (data.heart || 0) + (data.like || 0) + (data.dislike || 0);
+      });
+    }
+
+    // Bấm nút reaction
+    function react(type) {
+      const reactionsRef = ref(db, 'reactions/' + postId);
+      onValue(reactionsRef, (snapshot) => {
+        const current = snapshot.val() || { heart: 0, like: 0, dislike: 0 };
+        current[type] = (current[type] || 0) + 1;
+        update(reactionsRef, current);
+      }, { onlyOnce: true });
+    }
+
+    // Thêm bình luận
+    window.addComment = function () {
+      const input = document.getElementById('commentInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const commentRef = push(ref(db, 'comments/' + postId));
+      set(commentRef, {
+        text: text,
+        time: new Date().toLocaleString()
+      });
+
+      input.value = '';
+    }
+
+    // Hiển thị bình luận
+    function fetchComments() {
+      const commentsRef = ref(db, 'comments/' + postId);
+      onValue(commentsRef, (snapshot) => {
+        const comments = snapshot.val() || {};
+        const container = document.getElementById('commentsList');
+        container.innerHTML = '';
+
+        // Sắp xếp bình luận mới lên đầu
+        const sorted = Object.values(comments).sort((a, b) => new Date(b.time) - new Date(a.time));
+        sorted.forEach(comment => {
+          const div = document.createElement('div');
+          div.className = 'comment';
+          div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    fetchReactions();
+    fetchComments();
+  </script>
+</body>
+</html>
+
 
 
 
