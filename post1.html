@@ -52,16 +52,17 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
     import { getDatabase, ref, onValue, update, push, set } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCtPzaCgVhry6kfoXgivm0H0781opVW2p4",
-      authDomain: "person-page.firebaseapp.com",
-      projectId: "person-page",
-      storageBucket: "person-page.firebasestorage.app",
-      messagingSenderId: "611998150940",
-      appId: "1:611998150940:web:2431d0ac876e0783e94ad9",
-      measurementId: "G-6MKX67N5LH",
-      databaseURL: "https://person-page-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
+   const firebaseConfig = {
+  apiKey: "AIzaSyCtPzaCgVhry6kfoXgivm0H0781opVW2p4",
+  authDomain: "person-page.firebaseapp.com",
+  databaseURL: "https://person-page-default-rtdb.asia-southeast1.firebasedatabase.app", // <- thêm dòng này
+  projectId: "person-page",
+  storageBucket: "person-page.appspot.com", // <- sửa lại đuôi .app thành .appspot.com
+  messagingSenderId: "611998150940",
+  appId: "1:611998150940:web:2431d0ac876e0783e94ad9",
+  measurementId: "G-6MKX67N5LH"
+};
+
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
