@@ -5,7 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bài viết 1 - Cảm ơn và Xin lỗi</title>
   <style>
-    /* (Giữ nguyên phần CSS như bạn đã có) */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .reaction-btn {
+      display: inline-block;
+      margin-right: 12px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .comment-section {
+      margin-top: 30px;
+    }
+    textarea {
+      width: 100%;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .comment {
+      background: #f9f9f9;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+    }
+    .home-icon {
+      text-decoration: none;
+      font-size: 24px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
   </style>
 </head>
 <body>
@@ -13,22 +50,10 @@
   <h1>Bài viết 1: Cảm ơn và xin lỗi</h1>
 
   <div class="content">
-   <p>                                                              
-<p>Hai câu nói “cảm ơn” và “xin lỗi”  có ý nghĩa to lớn và sâu sắc.</p>
-<p>Cảm ơn thể hiện sự biết ơn của chúng ta, là chiếc cầu nối để ta gắn kết với thế giới, với cộng đồng, với những mối quan hệ.
-Là cách để ta thể hiện sự biết ơn, tôn trọng. Hãy cảm ơn tất cả những gì diễn ra xung quanh cuộc sống của bạn, bạn sẽ thấy cuộc sống này có thật nhiều điều tốt đẹp và tử tế. </p>
-<p>Xin lỗi. Trong quá trình trưởng thành, dù vô tình hay cố tình có thể chúng ta đã, đang, sẽ làm tổn thương 1 ai đó, 
-có thể là chính chúng ta. 
-Ta nợ chính mình một lần sống tử tế, một nụ cười hạnh phúc trọn vẹn, một ngày an yên không suy nghĩ.</p>
-<p>Vì ngại ngùng, xấu hổ, sĩ diện mà ta không dễ mở lời nói cảm ơn, xin lỗi dù biết mình nên nói ra.
-Hoặc có thể theo thói quen mà nói một cách xã giao không chân thành.</p>
-<p>Luôn nhắc nhở bản thân hãy cố gắng thực hành nói lời cảm ơn và xin lỗi đúng lúc, đúng cách, và thật lòng.
-Cảm ơn vì điều gì đó, khi ai đó giúp mình dù là điều nhỏ nhất. Xin lỗi vì điều gì đó, khi ta làm ai đó tổn thương, gây phiền hà cho người khác, đã nhận ra được lỗi sai của mình.</p>
-<p>Chúng ta có thể học cách tiết kiệm lời cảm ơn và xin lỗi.
-Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống sẽ nhẹ nhàng hơn với chính mình rất nhiều.
-Đó là cách để ta sống có trách nhiệm hơn, biết cảm thông và nuôi dưỡng tâm hồn chính mình.</p>
-</p>
-
+    <p>Hai câu nói “cảm ơn” và “xin lỗi” có ý nghĩa to lớn và sâu sắc.</p>
+    <p>Cảm ơn thể hiện sự biết ơn của chúng ta, là chiếc cầu nối để ta gắn kết với thế giới, với cộng đồng, với những mối quan hệ.</p>
+    <p>Xin lỗi. Trong quá trình trưởng thành, dù vô tình hay cố tình có thể chúng ta đã, đang, sẽ làm tổn thương 1 ai đó...</p>
+    <p>Luôn nhắc nhở bản thân hãy cố gắng thực hành nói lời cảm ơn và xin lỗi đúng lúc, đúng cách, và thật lòng...</p>
   </div>
 
   <div class="interactions">
@@ -52,24 +77,22 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
     import { getDatabase, ref, onValue, update, push, set } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
 
-  const firebaseConfig = {
-  apiKey: "AIzaSyCtPzaCgVhry6kfoXgivm0H0781opVW2p4",
-  authDomain: "person-page.firebaseapp.com",
-  databaseURL: "https://person-page-default-rtdb.asia-southeast1.firebasedatabase.app", // ✅ rất quan trọng
-  projectId: "person-page",
-  storageBucket: "person-page.appspot.com", // ✅ đúng đuôi
-  messagingSenderId: "611998150940",
-  appId: "1:611998150940:web:2431d0ac876e0783e94ad9",
-  measurementId: "G-6MKX67N5LH"
-};
-
-
+    const firebaseConfig = {
+      apiKey: "AIzaSyCtPzaCgVhry6kfoXgivm0H0781opVW2p4",
+      authDomain: "person-page.firebaseapp.com",
+      projectId: "person-page",
+      storageBucket: "person-page.appspot.com",
+      messagingSenderId: "611998150940",
+      appId: "1:611998150940:web:2431d0ac876e0783e94ad9",
+      measurementId: "G-6MKX67N5LH",
+      databaseURL: "https://person-page-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const postId = 'post1';
 
-    // Lấy reactions từ Firebase
+    // Lấy dữ liệu reactions
     function fetchReactions() {
       const reactionsRef = ref(db, 'reactions/' + postId);
       onValue(reactionsRef, (snapshot) => {
@@ -81,8 +104,8 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
       });
     }
 
-    // Bấm nút reaction
-    function react(type) {
+    // Gửi biểu tượng cảm xúc
+    window.react = function(type) {
       const reactionsRef = ref(db, 'reactions/' + postId);
       onValue(reactionsRef, (snapshot) => {
         const current = snapshot.val() || { heart: 0, like: 0, dislike: 0 };
@@ -91,7 +114,7 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
       }, { onlyOnce: true });
     }
 
-    // Thêm bình luận
+    // Gửi bình luận
     window.addComment = function () {
       const input = document.getElementById('commentInput');
       const text = input.value.trim();
@@ -100,7 +123,7 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
       const commentRef = push(ref(db, 'comments/' + postId));
       set(commentRef, {
         text: text,
-        time: new Date().toLocaleString()
+        time: new Date().toISOString()
       });
 
       input.value = '';
@@ -114,12 +137,11 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
         const container = document.getElementById('commentsList');
         container.innerHTML = '';
 
-        // Sắp xếp bình luận mới lên đầu
         const sorted = Object.values(comments).sort((a, b) => new Date(b.time) - new Date(a.time));
         sorted.forEach(comment => {
           const div = document.createElement('div');
           div.className = 'comment';
-          div.innerHTML = `<strong>${comment.time}</strong><br>${comment.text}`;
+          div.innerHTML = `<strong>${new Date(comment.time).toLocaleString()}</strong><br>${comment.text}`;
           container.appendChild(div);
         });
       });
@@ -130,6 +152,7 @@ Nhưng nếu như có thể thật lòng mà nói ra, có lẽ cuộc sống s�
   </script>
 </body>
 </html>
+
 
 
 
