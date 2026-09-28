@@ -117,10 +117,10 @@
       font-weight: 500;
     }
 
-    /* --- HERO SECTION --- */
+    /* --- HERO SECTION (ĐÃ THU GỌN) --- */
     .hero-section {
       background: linear-gradient(135deg, #090514 0%, #170d36 100%);
-      padding: 80px 20px 60px;
+      padding: 30px 20px 25px; /* Thu gọn padding trên dưới */
       text-align: center;
       border-bottom: 1px solid var(--border);
       position: relative;
@@ -129,13 +129,13 @@
     .avatar-wrapper {
       position: relative;
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 12px; /* Rút ngắn khoảng cách xuống tên */
     }
 
     .avatar-wrapper::after {
       content: '';
       position: absolute;
-      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      top: -3px; left: -3px; right: -3px; bottom: -3px;
       border-radius: 50%;
       background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
       background-size: 200% 200%;
@@ -144,10 +144,10 @@
     }
 
     .avatar {
-      width: 130px;
-      height: 130px;
+      width: 100px; /* Thu nhỏ avatar */
+      height: 100px;
       border-radius: 50%;
-      border: 4px solid #090514;
+      border: 3px solid #090514;
       object-fit: cover;
       position: relative;
       z-index: 2;
@@ -159,11 +159,11 @@
     }
 
     .hero-section h1 {
-      font-size: 2.5rem;
+      font-size: 2rem; /* Giảm cỡ chữ tên */
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1px;
-      margin-bottom: 10px;
+      margin-bottom: 4px; /* Ép sát câu quote */
       text-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
     }
 
@@ -179,14 +179,14 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 20px 100px;
+      padding: 40px 20px 100px;
     }
 
     .section-title {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--text-title);
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       text-align: center;
       position: relative;
     }
@@ -267,9 +267,8 @@
       .nav-links { gap: 5px; width: 100%; justify-content: center; }
       .nav-links a { font-size: 0.85rem; padding: 8px 16px; }
       
-      .hero-section { padding: 50px 20px 40px; }
-      .hero-section h1 { font-size: 2rem; }
-      .avatar { width: 110px; height: 110px; }
+      .hero-section { padding: 30px 20px 20px; }
+      .hero-section h1 { font-size: 1.8rem; }
       
       .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); }
     }
@@ -291,7 +290,7 @@
     <div class="datetime-widget" id="datetimeWidget"></div>
   </nav>
 
-  <!-- Giới thiệu bản thân -->
+  <!-- Giới thiệu bản thân (Đã được thu gọn) -->
   <header class="hero-section">
     <div class="avatar-wrapper">
       <a href="08.2019.jpg" data-lightbox="avatar">
